@@ -1,0 +1,15 @@
+html {
+    box-sizing: border-box; /*Esto es para cuando especifquemos un padding o margin no modifique el witdth heigh*/
+    font-size: 62.5%;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+/*https://www.paulirish.com/2012/box-sizing-border-box-ftw/*/
+
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 2rem;
+  line-height: 2;
+  padding: 60px;
+}
