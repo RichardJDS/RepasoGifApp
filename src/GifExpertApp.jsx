@@ -9,7 +9,7 @@ const GifExpertApp = (props) => {
     const [categories, setCategories] = useState(['One punch']);      
     const handleAddCategory = (category)=>{
         if(category.trim().length >2 && !categories.includes(category)){
-            setCategories([...categories, category]);
+            setCategories([ category, ...categories,]);
         }
 
     }
