@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import { getGifs } from '../helpers/getGifs';
+import { useFetchGifs } from '../hooks/useFetchGifs';
 import { GifGridItem } from './GifGridItem';
 
 export const GifGrid = ({category}) => {
 
-    const [images, setImages] = useState([]);
+    // const [images, setImages] = useState([]);
 
-    useEffect(() => {
-    getGifs(category)
-      .then(setImages)
-    },[])
+    // useEffect(() => {
+    // getGifs(category)
+    //   .then(setImages)
+    // },[])
+
+/*Custoom HOOKS.- Es una forma de extraer logica de algun componente O logica que YO QUIERO REUTILIZAR
+Y extraerla de tal manera que sea sencillo REUTILIZARLA, y se crea e inicia con el sufijo "use"
+
+*/
+
 
 
 
@@ -47,15 +54,18 @@ export const GifGrid = ({category}) => {
     
     // getGifs();
 
-
+   const {data, loading} = useFetchGifs(category);
+   console.log(data);
+   console.log(loading);
 
 
   return (
     <>
+    {loading && <p>Loading....</p>}
     <h3>{category}</h3>
     <div className='card-grid'>   
             {
-                images.map((img)=>{
+                data.map((img)=>{
                   return  <GifGridItem {...img} key={img.id}/>;
                 })
                 // Map realiza una transformacion de la fuente de datos
