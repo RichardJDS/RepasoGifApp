@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
+import { GifGridItem } from './GifGridItem';
 
 export const GifGrid = ({category}) => {
 
-    const [count, setCount] = useState(0);
-
+    const [images, setImages] = useState([]);
 
     useEffect(() => {
     getGifs();
     },[])
     /*Use Efect es para que solo se ejecute una funcion una unica vez recibe  
-    useEffect(callback, lista de dependencias) , si la lista de dendencias es una arreglo
+    useEffect(callback que se va a ejecutar, lista de dependencias) , si la lista de dendencias es una arreglo
     vacio solo se ejecutara ese metodo una vez []
     */
     
@@ -28,16 +28,23 @@ export const GifGrid = ({category}) => {
             }
         })
         console.log(gifs);
+        setImages(gifs);
 
     }
     // getGifs();
 
 
   return (
-    <div>
-        <button onClick={()=>setCount(count+1)}>+1</button>
-        <h2>{count}</h2>
-        <h3>{category}</h3>
+    <>
+    <h3>{category}</h3>
+    <div className='card-grid'>   
+            {
+                images.map((img)=>{
+                  return  <GifGridItem {...img} key={img.id}/>;
+                })
+            }
+        
     </div>
+    </>
   )
 }
